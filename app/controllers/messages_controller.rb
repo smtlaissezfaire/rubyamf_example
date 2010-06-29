@@ -41,7 +41,7 @@ class MessagesController < ApplicationController
   # POST /messages
   # POST /messages.xml
   def create
-    @message = Message.new(params[:message])
+    @message = Message.new(normalized_params[:message])
 
     respond_to do |format|
       if @message.save
@@ -81,6 +81,16 @@ class MessagesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to(messages_url) }
       format.xml  { head :ok }
+    end
+  end
+
+private
+
+  def normalized_params
+    if is_amf && params[0]
+      params[0]
+    else
+      params
     end
   end
 end

@@ -31,5 +31,5 @@
 
   <mx:Button id="createMessage"
              label="Create Message"
-             click="messageService.create.send({text: createTxt.text});" />
+             click="messageService.create.send({message: {text: createTxt.text}});" />
 </mx:Application>
