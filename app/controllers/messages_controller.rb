@@ -6,7 +6,8 @@ class MessagesController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
-      format.xml  { render :xml => @messages }
+      format.xml { render :xml => @messages }
+      format.amf { render :amf => @messages }
     end
   end
 
@@ -46,9 +47,11 @@ class MessagesController < ApplicationController
       if @message.save
         format.html { redirect_to(@message, :notice => 'Message was successfully created.') }
         format.xml  { render :xml => @message, :status => :created, :location => @message }
+        format.amf  { render :amf => "Message Saved" }
       else
         format.html { render :action => "new" }
         format.xml  { render :xml => @message.errors, :status => :unprocessable_entity }
+        format.amf  { render :amf => @message.errors }
       end
     end
   end
