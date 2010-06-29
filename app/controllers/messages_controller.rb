@@ -51,7 +51,7 @@ class MessagesController < ApplicationController
       else
         format.html { render :action => "new" }
         format.xml  { render :xml => @message.errors, :status => :unprocessable_entity }
-        format.amf  { render :amf => @message.errors }
+        format.amf  { render :amf => @message.errors.to_a }
       end
     end
   end
