@@ -47,7 +47,7 @@ class MessagesController < ApplicationController
       if @message.save
         format.html { redirect_to(@message, :notice => 'Message was successfully created.') }
         format.xml  { render :xml => @message, :status => :created, :location => @message }
-        format.amf  { render :amf => "Message Saved" }
+        format.amf  { render :amf => "Message Saved - id: #{@message.id}" }
       else
         format.html { render :action => "new" }
         format.xml  { render :xml => @message.errors, :status => :unprocessable_entity }
